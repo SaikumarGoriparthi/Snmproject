@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+
+        <h1>View All Files</h1>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>File ID</th>
+                    <th>Filename</th>
+                    <th>created_at</th>
+                    <th>link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in fdata %}
+                <tr>
+                    <td>{{i[0]}}</td>
+                    <td>{{i[1]}}</td>
+                    <td>{{i[2]}}</td>
+                    <td><a href="{{url_for('viewfile',fid=i[0])}}">View</a></td>
+                    <td><a href="{{url_for('downloadfile',fid=i[0])}}">Download</a></td>
+                    <td><a href="{{url_for('deletefile',fid=i[0])}}">delete</a></td>
+                </tr>
+                {% endfor %}
+                 </tbody>
+        </table>
+    
+    </body>
+</body>
+</html>

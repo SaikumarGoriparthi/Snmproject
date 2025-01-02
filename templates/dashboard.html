@@ -6,72 +6,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+        /* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
 
-        .navbar a,
-        .dropdown button {
-            text-decoration: none;
-            padding: 10px 15px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
+/* Navbar Container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4caf50;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        .navbar a:hover,
-        .dropdown button:hover {
-            border-radius: 4px;
-        }
+.navbar p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+}
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+/* Navbar Links */
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            min-width: 150px;
-            z-index: 1;
-        }
+.navbar a:hover {
+    background-color: #45a049;
+    border-radius: 5px;
+}
 
-        .dropdown-content a {
-            padding: 10px 15px;
-            text-decoration: none;
-            display: block;
-        }
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+}
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+.dropdown button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
 
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
+.dropdown button:hover {
+    background-color: #45a049;
+}
 
-        .search-container button {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f4f4f4;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-container input[type="search"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-container button {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #45a049;
+}
+
+/* Logout Link */
+.navbar a[href="{{url_for('logout')}}"] {
+    color: #fff;
+    font-weight: bold;
+    background-color: #e74c3c;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar a[href="{{url_for('logout')}}"]:hover {
+    background-color: #c0392b;
+}
+
     </style>
-
 </head>
 {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <center><h3>{{ message }}</h3></center>
-    {% endfor %}
-  {% endif %}
+{% if messages %}
+{% for message in messages %}
+<center>
+    <h3>{{ message }}</h3>
+</center>
+{% endfor %}
+{% endif %}
 {% endwith %}
+
 <body>
     <div class="navbar">
         <p>
@@ -130,7 +204,8 @@
             <td><a href="{{url_for('deletenotes',nid=i[0])}}" class="delete">delete</a></td>
         </tr>
         {% endfor %}
-         </tbody>
+    </tbody>
 </table>
 {% endif %}
+
 </html>
